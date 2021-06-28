@@ -32,9 +32,18 @@
         state: present
         shell: /sbin/nologin
 
+    - name: download mysql
+      
+      get_url:
+        validate_certs: no
+        url: http://localhost:8070/mysql-8.0.16-linux-glibc2.12-x86_64.zip
+        dest: /tmp/mysql-8.0.16-linux-glibc2.12-x86_64.zip
+        mode: 0755
+      delegate_to: localhost
+
     - name: scp the mysql installer
       unarchive:
-        src: mysql-8.0.16-linux-glibc2.12-x86_64.zip
+        src: /tmp/mysql-8.0.16-linux-glibc2.12-x86_64.zip
         dest: /opt/
         owner: mysql
         group: mysql
