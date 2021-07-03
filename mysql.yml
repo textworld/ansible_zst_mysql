@@ -2,8 +2,8 @@
 - hosts: all
   become: True
   remote_user: textworld
-  become_pass: ffffff
   vars:
+    ansible_become_pass: "ffffff"
     mysql_data_dir_base: /data/mysql/
     mysql_port: 3307 
     mysql_base_dir: /opt/mysql-8.0.16-linux-glibc2.12-x86_64/
