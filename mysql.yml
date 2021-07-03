@@ -5,7 +5,8 @@
   vars:
     ansible_become_pass: "ffffff"
     mysql_data_dir_base: /data/mysql/
-    mysql_port: 3307 
+    mysql_schema: test2
+    mysql_port: 3310 
     mysql_base_dir: /opt/mysql-8.0.16-linux-glibc2.12-x86_64/
     install_packages:
       - vim
@@ -34,16 +35,15 @@
         shell: /sbin/nologin
 
     - name: download mysql
-      
       get_url:
         validate_certs: no
-        url: "http://192.168.31.206:9000/common/mysql-8.0.16-linux-glibc2.12-x86_64.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=cf2aQgzvPR5HrH%2F20210703%2F%2Fs3%2Faws4_request&X-Amz-Date=20210703T033013Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Signature=2f2fa7d19edd4324e073307f72f4a0e1f226c485963061c7b95a2301ee87722d"
+        url: "http://192.168.31.26:8070/mysql-8.0.16-linux-glibc2.12-x86_64.zip"
         dest: /tmp/mysql-8.0.16-linux-glibc2.12-x86_64.zip
         mode: 0755
-      delegate_to: localhost
 
     - name: scp the mysql installer
       unarchive:
+        remote_src: yes
         src: /tmp/mysql-8.0.16-linux-glibc2.12-x86_64.zip
         dest: /opt/
         owner: mysql
