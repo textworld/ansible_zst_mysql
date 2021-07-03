@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: True
-  remote_user: vagrant
+  remote_user: textworld
   vars:
     mysql_data_dir_base: /data/mysql/
     mysql_port: 3307 
