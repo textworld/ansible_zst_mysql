@@ -2,6 +2,7 @@
 - hosts: all
   become: True
   remote_user: textworld
+  become_pass: ffffff
   vars:
     mysql_data_dir_base: /data/mysql/
     mysql_port: 3307 
